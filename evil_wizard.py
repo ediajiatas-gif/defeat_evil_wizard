@@ -26,27 +26,30 @@ class Warrior(Character):
         super().__init__(name, health=140, attack_power=25)
         
     def attack(self, opponent):
-        opponent.health -= self.attack_power
-        print(f"{self.name} slashes {opponent.name} for {self.attack_power} damage!")
+        random_attack_power = random.randint(15, self.attack_power)
+        opponent.health -= random_attack_power
+        print(f"{self.name} slashes {opponent.name} for {random_attack_power} damage!")
         if opponent.health <= 0:
             print(f"{opponent.name} has been defeated!")
             
     def special1(self, opponent):
-        opponent.health -= (self.attack_power * 1.5)
-        print(f"{self.name} uses reckless charge on {opponent.name} dealing {self.attack_power} damage!")
+        special_damage = self.attack_power * 1.3
+        opponent.health -= special_damage
+        print(f"{self.name} uses reckless charge on {opponent.name} dealing {special_damage} damage!")
         if opponent.health <= 0:
             print(f"{opponent.name} has been defeated!")
             
     def special2(self, opponent):
-        opponent.health -= (self.attack_power * 1.5)
-        print(f"{self.name} uses flame sword! {opponent.name} bursts on fire and takes {self.attack_power} damage!")
+        special_damage = self.attack_power * 1.5
+        opponent.health -= special_damage
+        print(f"{self.name} uses flame sword! {opponent.name} bursts on fire and takes {special_damage} damage!")
         if opponent.health <= 0:
             print(f"{opponent.name} has been defeated!")
         
     '''Healing method: Cannot exceed Character's max health'''    
     def heal (self):
-        if self.health > self.max_health:
-            print(f"Alrdeady max HP. Cannot exceed maximum health")
+        if self.health >= self.max_health:
+            print(f"Already max HP. Cannot exceed maximum health")
         else: 
             self.health += 10
             print(f"{self.name} used healing. Health is now: {self.health}")
@@ -54,23 +57,25 @@ class Warrior(Character):
 # Mage class (inherits from Character)
 class Mage(Character):
     def __init__(self, name):
-        super().__init__(name, health=100, attack_power=35)
+        super().__init__(name, health=100, attack_power=30)
         
     def attack(self, opponent):
-        opponent.health -= self.attack_power
-        print(f"{self.name} casts spell toward {opponent.name} dealing {self.attack_power} damage!")
+        random_attack_power = random.randint(20, self.attack_power)
+        opponent.health -= random_attack_power
+        print(f"{self.name} casts spell toward {opponent.name} dealing {random_attack_power} damage!")
         if opponent.health <= 0:
             print(f"{opponent.name} has been defeated!")
             
     def special1(self, opponent):
-        opponent.health -= (self.attack_power * 1.5)
-        print(f"{self.name} uses fireball! {opponent.name} bursts into flames taking {self.attack_power} damage!")
+        special_damage = self.attack_power * 1.5
+        opponent.health -= special_damage
+        print(f"{self.name} uses fireball! {opponent.name} bursts into flames taking {special_damage} damage!")
         if opponent.health <= 0:
             print(f"{opponent.name} has been defeated!")
             
     def special2(self, opponent):
-        opponent.health -= (self.attack_power * 1.3)
-        print(f"{self.name} uses life drain on {opponent.name} and takes {self.attack_power} damage!")
+        opponent.health -= self.attack_power
+        print(f"{self.name} uses life drain on {opponent.name} and deals {self.attack_power} damage!")
         if self.health < self.max_health:
             self.health += 5 
             print(f"{self.name} gained 5 HP. Total health: {self.health}")
@@ -80,8 +85,8 @@ class Mage(Character):
             
     '''Healing method: Cannot exceed Character's max health'''    
     def heal (self):
-        if self.health > self.max_health:
-            print(f"Alrdeady max HP. Cannot exceed maximum health")
+        if self.health >= self.max_health:
+            print(f"Already max HP. Cannot exceed maximum health")
         else: 
             self.health += 10
             print(f"{self.name} used healing. Health is now: {self.health}")
@@ -92,67 +97,73 @@ class EvilWizard(Character):
         super().__init__(name, health=150, attack_power=15)
 
     def regenerate(self):
-        self.health += 5
-        print(f"{self.name} regenerates 5 health! Current health: {self.health}")
+        self.health += 10
+        print(f"{self.name} regenerates 10 health! Current health: {self.health}")
 
 # Create Archer class
-class Archer:
+class Archer(Character):
     def __init__(self, name):
-        super().__init__(name, health = 180, attack_power = 10)
+        super().__init__(name, health = 180, attack_power = 20)
 
     def attack(self, opponent):
-        opponent.health -= self.attack_power
-        print(f"{self.name} shoots arrow at {opponent.name} for {self.attack_power} damage!")
+        random_attack_power = random.randint(15, self.attack_power)
+        opponent.health -= random_attack_power
+        print(f"{self.name} shoots arrow at {opponent.name} for {random_attack_power} damage!")
         if opponent.health <= 0:
             print(f"{opponent.name} has been defeated!")
             
     def special1(self, opponent):
-        opponent.health -= (self.attack_power * 1.8)
-        print(f"{self.name} used headshot {opponent.name} causing {self.attack_power} damage!")
+        special_damage = self.attack_power * 1.8
+        opponent.health -= special_damage
+        print(f"{self.name} used headshot {opponent.name} causing {special_damage} damage!")
         if opponent.health <= 0:
             print(f"{opponent.name} has been defeated!")
 
     def special2(self, opponent):
-        opponent.health -= (self.attack_power * 1.5)
-        print(f"{self.name} used poison arrow on {opponent.name} and takes {self.attack_power} damage!")
+        special_damage = self.attack_power * 1.5
+        opponent.health -= special_damage
+        print(f"{self.name} used poison arrow on {opponent.name} and takes {special_damage} damage!")
         if opponent.health <= 0:
             print(f"{opponent.name} has been defeated!")
             
     '''Healing method: Cannot exceed Character's max health'''    
     def heal (self):
-        if self.health > self.max_health:
-            print(f"Alrdeady max HP. Cannot exceed maximum health")
+        if self.health >= self.max_health:
+            print(f"Already max HP. Cannot exceed maximum health")
         else: 
             self.health += 10
             print(f"{self.name} used healing. Health is now: {self.health}")
 
 # Create Paladin class 
-class Paladin:
+class Paladin(Character):
     def __init__(self, name):
         super().__init__(name, health = 150, attack_power = 30)
 
     def attack(self, opponent):
-        opponent.health -= self.attack_power
-        print(f"{self.name} charges at {opponent.name} with his sword for {self.attack_power} damage!")
+        random_attack_power = random.randint(20, self.attack_power)
+        opponent.health -= random_attack_power
+        print(f"{self.name} charges at {opponent.name} with his sword for {random_attack_power} damage!")
         if opponent.health <= 0:
             print(f"{opponent.name} has been defeated!")
             
     def special1(self, opponent):
-        opponent.health -= (self.attack_power * 1.5)
-        print(f"{self.name} uses Holy Stirke {opponent.name} causing {self.attack_power} damage!")
+        special_damage = self.attack_power * 1.5
+        opponent.health -= special_damage
+        print(f"{self.name} uses Holy Strike on {opponent.name} causing {special_damage} damage!")
         if opponent.health <= 0:
             print(f"{opponent.name} has been defeated!")
             
     def special2(self, opponent):
-        opponent.health -= (self.attack_power * 1.5)
-        print(f"{self.name} uses shield bash on {opponent.name} dealing {self.attack_power} damage!")
+        special_damage = self.attack_power * 1.3
+        opponent.health -= special_damage
+        print(f"{self.name} uses shield bash on {opponent.name} dealing {special_damage} damage!")
         if opponent.health <= 0:
             print(f"{opponent.name} has been defeated!")
             
     '''Healing method: Cannot exceed Character's max health'''    
     def heal (self):
-        if self.health > self.max_health:
-            print(f"Alrdeady max HP. Cannot exceed maximum health")
+        if self.health >= self.max_health:
+            print(f"Already max HP. Cannot exceed maximum health")
         else: 
             self.health += 10
             print(f"{self.name} used healing. Health is now: {self.health}")
@@ -192,11 +203,13 @@ def battle(player, wizard):
         if choice == '1':
             player.attack(wizard)
         elif choice == '2':
-            special_attack = int(input("Choose we special attack to use (1-2): "))
+            special_attack = int(input("Choose a special attack to use (1-2): "))
             if special_attack == 1:
                 player.special1(wizard)
             elif special_attack == 2:
                 player.special2(wizard)
+            else: 
+                print("Invalid Choice")
         elif choice == '3':
                 player.heal()
         elif choice == '4':
@@ -222,5 +235,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
-# Fix the attack_power * 1.5
